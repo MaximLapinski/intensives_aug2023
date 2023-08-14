@@ -1,24 +1,34 @@
 package ru.yandex.tasks;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Task5BFS {
-    public void runSearch() {
-        /*
-         * Реализация bfs
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+    public static int[] runSearch(int[][] tree, int node) {
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        queue.add(node);
+        while(!queue.isEmpty()){
+            int len = queue.size();
+            for(int j = 0; j < len; j++){
+                int cur = queue.remove();
+                ans.add(cur);
+                if(tree[cur][0] > -1){
+                    queue.add(tree[cur][0]);
+                }
+                if(tree[cur][1] > -1){
+                    queue.add(tree[cur][1]);
+                }
+            }
+        }
+        int[] ansArr = new int[ans.size()];
+        for (int i = 0; i < ansArr.length; i++){
+            ansArr[i] = ans.get(i);
+        }
+        return ansArr;
     }
 
     public static int[] getBFSOrder(int[][] tree, int root) {
-        /*
-         * Функция возвращает массив с порядковыми номерами вершин в обходе
-         * Дано дерево из n (<= 10^5) вершин (пронумерованных от 0 до n-1)
-         * tree - двумерный массив, tree[i][0] - номер левого сына, tree[i][1] - номер правого сына (если нет левого / правого сына, соотв. элемент -1).
-         * root - корень, откуда нужно начинать обход
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        return runSearch(tree, root);
     }
 
     public static void selfCheck() {
