@@ -1,15 +1,31 @@
 package ru.yandex.tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Task7PrimeNumbers {
+
+    public static boolean checkSimple(int n){
+        for(int i = 2; i <= Math.sqrt(n); i++){
+            if(n % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
     public static int[] findPrimes (int N) {
-        /*
-         * 2 <= N <= 10^6
-         * Выход: отсортированный массив всех простых чисел от 2 до N
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        List<Integer> ans = new ArrayList<>();
+        for(int i = 2; i <= N; i++){
+            if(checkSimple(i)){
+                ans.add(i);
+            }
+        }
+        int[] ansArr = new int[ans.size()];
+        for (int i = 0; i < ansArr.length; i++){
+            ansArr[i] = ans.get(i);
+        }
+        return ansArr;
     }
 
     public static void selfCheck() {
