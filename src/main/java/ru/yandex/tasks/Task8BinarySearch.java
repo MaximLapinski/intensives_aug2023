@@ -1,15 +1,23 @@
 package ru.yandex.tasks;
 
 public class Task8BinarySearch {
+
+    public static int binSearch(int number, int[] sortedList, int l, int r){
+        if(l >= r){
+            return -1;
+        }
+        int mid = (r + l) / 2;
+        if(sortedList[mid] > number){
+            return binSearch(number, sortedList, l, mid);
+        }
+        if(sortedList[mid] < number){
+            return binSearch(number, sortedList, mid, r);
+        }
+        return mid;
+    }
     public static int find(int number, int[] sortedList) {
-        /*
-         * number: целое число, -10^5 <= number <= 10^5
-         * numbers: массив целых чисел, 0 <= numbers.length <= 10^5 (числа не повторяются)
-         * Выход: i, где numbers[i] = number, -1, если такого i нет
-         * Если таких i несколько, вывести наибольший
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return -1;
+
+        return binSearch(number, sortedList, 0, sortedList.length);
     }
 
     public static void selfCheck() {
