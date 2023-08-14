@@ -1,25 +1,31 @@
 package ru.yandex.tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 
 public class Task4DFS {
-    public void runSearch() {
-        /*
-         * Реализация dfs
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+    public static void runSearch(int[][] tree, Stack<Integer> ans, int cur) {
+        if(tree[cur][1] >= 0){
+            ans.push(tree[cur][1]);
+            runSearch(tree, ans, tree[cur][1]);
+        }
+        if(tree[cur][0] >= 0) {
+            ans.push(tree[cur][0]);
+            runSearch(tree, ans, tree[cur][0]);
+        }
     }
 
     public static int[] getDFSOrder(int[][] tree, int root) {
-        /*
-         * Функция возвращает массив с порядковыми номерами вершин в обходе
-         * Сначала левое поддерево, затем правое, затем корень.
-         * Дано дерево из n (<= 10^5) вершин (пронумерованных от 0 до n-1)
-         * tree - двумерный массив, tree[i][0] - номер левого сына, tree[i][1] - номер правого сына (если нет левого / правого сына, соотв. элемент -1)
-         * root - корень, откуда нужно начинать обход
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        Stack<Integer> ans = new Stack<>();
+        ans.add(root);
+        runSearch(tree, ans, root);
+        int[] ansArr = new int[ans.size()];
+        for (int i = 0; i < ansArr.length; i++){
+            ansArr[i] = ans.pop();
+        }
+        return ansArr;
     }
 
     public static void selfCheck() {
