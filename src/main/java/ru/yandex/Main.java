@@ -9,6 +9,7 @@ public class Main {
         Task3InsertionSort.selfCheck();
         Task4DFS.selfCheck();
         Task5BFS.selfCheck();
+        Task6BraceBalance.selfCheck();
 
     }
 }

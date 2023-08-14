@@ -1,27 +1,28 @@
 package ru.yandex.tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class Task4DFS {
-    public static void runSearch(int[][] tree, Stack<Integer> ans, int cur) {
-        if(tree[cur][1] >= 0){
-            ans.push(tree[cur][1]);
-            runSearch(tree, ans, tree[cur][1]);
-        }
-        if(tree[cur][0] >= 0) {
-            ans.push(tree[cur][0]);
+    public static void runSearch(int[][] tree, List<Integer> ans, int cur) {
+        if(cur == -1) return;
+        if(tree[cur][0] > -1) {
             runSearch(tree, ans, tree[cur][0]);
         }
+        if(tree[cur][1] > -1) {
+            runSearch(tree, ans, tree[cur][1]);
+        }
+        ans.add(cur);
     }
 
     public static int[] getDFSOrder(int[][] tree, int root) {
-        Stack<Integer> ans = new Stack<>();
-        ans.add(root);
+        List<Integer> ans = new ArrayList<>();
         runSearch(tree, ans, root);
         int[] ansArr = new int[ans.size()];
         for (int i = 0; i < ansArr.length; i++){
-            ansArr[i] = ans.pop();
+            ansArr[i] = ans.get(i);
         }
         return ansArr;
     }
