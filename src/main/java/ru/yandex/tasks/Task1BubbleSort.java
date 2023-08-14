@@ -5,12 +5,20 @@ import java.util.Arrays;
 
 public class Task1BubbleSort {
     public static ArrayList<Integer> sort(ArrayList<Integer> numbers) {
-        /*
-         * numbers: массив целых чисел, -10^5 <= numbers[i] <= 10^5, длина массива до 10^5
-         * Выход: отсортированный (сортировкой пузырьком!) numbers
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        Integer[] mas = new Integer[numbers.size()];
+        numbers.toArray(mas);
+        for(int i = 1; i < mas.length; i++){
+            for(int j = 0; j < mas.length - 1; j++){
+                if(mas[j + 1] < mas[j]){
+                    int save = mas[j];
+                    mas[j] = mas[j + 1];
+                    mas[j + 1] = save;
+                }
+            }
+        }
+        numbers = new ArrayList<>();
+        numbers.addAll(Arrays.asList(mas));
+        return numbers;
     }
 
     public static void selfCheck() {
