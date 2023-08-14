@@ -2,15 +2,24 @@ package ru.yandex.tasks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Task3InsertionSort {
     public static ArrayList<Integer> sort(ArrayList<Integer> numbers) {
-        /*
-         * numbers: массив целых чисел, -10^5 <= numbers[i] <= 10^5, длина массива до 10^5
-         * Выход: отсортированный (сортировкой вставками!) numbers
-         */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return null;
+        Integer[] array = new Integer[numbers.size()];
+        numbers.toArray(array);
+        for(int i = 0; i < array.length; i++){
+            int temp = array[i]; // делаем копию помеченного элемента
+            int j = i;
+            while (j 	> 0 && array[j - 1] >= temp) {
+                array[j] = array[j - 1];
+                --j;
+            }
+            array[j] = temp;
+        }
+        numbers = new ArrayList<>();
+        Collections.addAll(numbers, array);
+        return numbers;
     }
 
     public static void selfCheck() {
